@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<script src="js/webintent.js"></script>
+	<script src="js/startApp.js"></script>
+	 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	<script src="js/app.js"></script>
+	<script src="cordova.js"></script>
+	
+	
+	<script type="text/javascript">
+		function startODK() {
+     
+			var sApp = startApp.set({ /* params */
+				"package":"org.odk.collect.android",
+				"intentstart":"startActivity"
+				}, { /* extras */
+				});
+
+				sApp.check(function(values) { /* success */
+					console.log(values)
+				}, function(error) { /* fail */
+					var x =window.confirm("Open Data Kit is not installed. \nRedirect to Google Play Store?");
+					if (x == true){
+					window.open('https://play.google.com/store/apps/details?id=org.odk.collect.android', '_system')
+					}
+				});
+
+
+				sApp.start(function() { /* success */
+					console.log(values)
+				}, function(error) { /* fail */
+					//alert(error);
+				});
+
+			}
+
+		function startTelegram() {
+		 
+			 var sApp = startApp.set({ /* params */
+			"package":"org.telegram.messenger",
+			"intentstart":"startActivity"
+			}, { /* extras */
+			});
+
+			sApp.check(function(values) { /* success */
+			console.log(values)
+			}, function(error) { /* fail */
+				var x =window.confirm("Telegram is not installed. \nRedirect to Google Play Store?");
+				if (x == true){
+				window.open('https://play.google.com/store/apps/details?id=org.telegram.messenger', '_system')
+				}
+			});
+
+			sApp.start(function() { /* success */
+			console.log(values)
+			}, function(error) { /* fail */
+				});
+		}	
+	
+  </script>
+	
+	
+	
+  </head>
+  
+	<style>
+		.custom-1{
+		color : #ffffff !important; 
+		background-color:#5c6f68!important; 
+		
+	 }
+	 
+		.custom-2{
+		color : #ffffff !important; 
+		background-color:#8aa39b!important; 
+	 }
+	 
+		.custom-3{
+		color : #ffffff !important; 
+		background-color:#95bbc3!important; 
+	 }
+	 
+		.custom-4{
+		color : #ffffff !important; 
+		background-color:#a4f9c8!important; 
+	 }
+	 
+	 .custom-5{
+		color : #ffffff !important; 
+		background-color:#a7fff6!important; 
+	 }
+
+	 .button {
+	 width: 90%;
+	 margin-top: 1%;
+	 margin-bottom: 1%;
+	 margin-left: 5%;
+	 margin-left: 5%;
+	display: block
+	  padding: 60px 60px;
+	  font-size: 18px;
+	  cursor: pointer;
+	  text-align: center;
+	  text-decoration: none;
+	  outline: none;
+	  color: #fff;
+	  border: none;
+	  border-radius: 15px;
+	}
+	
+	.title-image{
+    display: block;
+    margin-top: 5%;
+	width: 55%
+	height: 55%
+ }
+
+	</style>
+  
+  
+  
+	<body ng-app="starter">
+	
+	<ion-pane>
+
+		<ion-header-bar>
+   
+		<div class="bar bar-header bar-positive custom-1">
+		<h1 class="title">Abalobi Mobile App</h1>
+		</div>
+		</ion-header-bar>
+
+		<ion-content class="padding has-header">
+	  
+		<center><img class="title-image" src="abalobi_logo.png" height="300" width="300"></center>
+		
+		<button onclick="startODK()" class="button button block padding button-calm custom-3">
+		Log New Catch</button>
+		
+		<button onclick="startTelegram()" class="button button block padding button-balanced custom-4">
+		Messaging</button>
+		
+		<button onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;" class="button button block padding button-energized custom-5">
+		Weather</button>
+		
+		<button onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;" class="button button block padding button-positive custom-2">
+		Visit Abalobi Website</button>
+		
+		
+		<h6><div class="bar bar-footer">
+		<div class="title">Abalobi Mobile v1.0</div>
+		</div><h6>
+		
+	  
+      </h6></h6></ion-content>
+    </ion-pane>
+
+	
+  </body>
+</html>
+
+
+
+
