@@ -3,7 +3,7 @@ Abalobi Fisher - Ionic app for launching ODK / Telegram / Weather etc
 
 - clone repository into local directory
 - in local directory open CLI and run: `npm install`
-- Run CLI : `ionic add platform android`
+- Run CLI : `cordova platform add android`
 - Install needed plugins:
 
     ```
