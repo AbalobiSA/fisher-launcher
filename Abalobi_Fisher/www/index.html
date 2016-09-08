@@ -5,67 +5,11 @@
     <title>Todo</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-	<script src="js/webintent.js"></script>
-	<script src="js/startApp.js"></script>
 	 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<script src="js/app.js"></script>
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 	<script src="cordova.js"></script>
-
-
-	<script type="text/javascript">
-		function startODK() {
-
-			var sApp = startApp.set({ /* params */
-				"package":"org.odk.collect.android",
-				"intentstart":"startActivity"
-				}, { /* extras */
-				});
-
-				sApp.check(function(values) { /* success */
-					console.log(values)
-				}, function(error) { /* fail */
-					var x =window.confirm("You need OpenDataKit to log your catch, but it is not installed. \n\nWould you like to install it now using the Google Play Store?");
-					if (x == true){
-					window.open('https://play.google.com/store/apps/details?id=org.odk.collect.android', '_system')
-					}
-				});
-
-
-				sApp.start(function() { /* success */
-					console.log(values)
-				}, function(error) { /* fail */
-					//alert(error);
-				});
-
-			}
-
-		function startTelegram() {
-
-			 var sApp = startApp.set({ /* params */
-			"package":"org.telegram.messenger",
-			"intentstart":"startActivity"
-			}, { /* extras */
-			});
-
-			sApp.check(function(values) { /* success */
-			console.log(values)
-			}, function(error) { /* fail */
-				var x =window.confirm("You need Telegram to send messages, but it is not installed. \n\nWould you like to install it now using the Google Play Store?");
-				if (x == true){
-				window.open('https://play.google.com/store/apps/details?id=org.telegram.messenger', '_system')
-				}
-			});
-
-			sApp.start(function() { /* success */
-			console.log(values)
-			}, function(error) { /* fail */
-				});
-		}
-
-  </script>
-
-
 
   </head>
 
@@ -123,42 +67,38 @@
 
 	</style>
 
-
-
-	<body ng-app="starter">
+	<body ng-app="app" ng-controller="MyCtrl">
 
 	<ion-pane>
 
-		<ion-header-bar>
-
 		<div class="bar bar-header bar-positive custom-1">
-		<h1 class="title">Abalobi Fisher</h1>
+		<h1 class="title"> Abalobi Fisher </h1>
 		</div>
-		</ion-header-bar>
 
-		<ion-content class="padding has-header">
+		<ion-content class="padding has-header has-footer">
 
 		<center><img class="title-image" src="abalobi_logo.png" height="300" width="300"></center>
 
-		<button onclick="startODK()" class="button button block padding button-calm custom-3">
+		<button ng-click="startODK()" class="button button block padding button-calm custom-3">
 		Log my catch</button>
 
-		<button onclick="startTelegram()" class="button button block padding button-balanced custom-4">
+		<button ng-click="startTelegram()" class="button button block padding button-balanced custom-4">
 		Messaging</button>
 
-		<button onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;" class="button button block padding button-energized custom-5">
+    <button ng-click="startCalculator()" class="button button block padding button-balanced custom-5">
+		Calculator</button>
+
+		<button onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;" class="button button block padding button-energized custom-1">
 		Weather</button>
 
-		<button onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;" class="button button block padding button-positive custom-2">
+		<button onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;" class="button button block padding button-positive custom-3">
 		Visit Abalobi website</button>
 
+    </ion-content>
 
-		<h6><div class="bar bar-footer">
-		<div class="title">v1.0.xx</div>
-		</div><h6>
-
-
-      </h6></h6></ion-content>
+    <div class="bar bar-footer bar-stable">
+  <div class="title">v{{appVersion}}</div>
+</div>
     </ion-pane>
 
 
