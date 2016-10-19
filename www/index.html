@@ -1,106 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Todo</title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-	 <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<script src="js/app.js"></script>
-  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-	<script src="cordova.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <title>Todo</title>
+        <meta
+            content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"
+            name="viewport">
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/app.js"></script>
+        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+        <script src="cordova.js"></script>
+    </head>
 
-  </head>
+    <body ng-app="app" ng-controller="MyCtrl">
+        <ion-pane>
+            <div class="bar bar-header bar-positive custom-1">
+                <h1 class="title">
+                    Abalobi Fisher
+                </h1>
+            </div>
+            <ion-content class="padding has-header has-footer">
+                <center><img class="title-image" height="300" src="abalobi_logo.png" width="300"></center>
 
-	<style>
-		.custom-1{
-		color : #ffffff !important;
-		background-color:#5c6f68!important;
+                <button
+                    class="button button block padding button-calm cs-button-whiteOnGrey"
+                    ng-click="startODK()">
+                    Log my catch</button>
 
-	 }
+                <button
+                    class="button button block padding button-balanced custom-4"
+                    ng-click="startTelegram()">
+                    Messaging</button>
 
-		.custom-2{
-		color : #ffffff !important;
-		background-color:#8aa39b!important;
-	 }
+                <button
+                    class="button button block padding button-balanced custom-5"
+                    ng-click="startCalculator()">
+                    Calculator</button>
 
-		.custom-3{
-		color : #ffffff !important;
-		background-color:#95bbc3!important;
-	 }
+                <button
+                    class="button button block padding button-energized custom-1"
+                    onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;">
+                    Weather</button>
 
-		.custom-4{
-		color : #ffffff !important;
-		background-color:#a4f9c8!important;
-	 }
+                <button
+                    class="button button block padding button-energized cs-button-whiteOnGrey"
+                    ng-click="startAnalytics()">
+                    Analytics</button>
 
-	 .custom-5{
-		color : #ffffff !important;
-		background-color:#a7fff6!important;
-	 }
+                <button
+                    class="button button block padding button-positive custom-3"
+                    onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;">
+                    Visit Abalobi website</button>
 
-	 .button {
-	 width: 90%;
-	 margin-top: 1%;
-	 margin-bottom: 1%;
-	 margin-left: 5%;
-	 margin-left: 5%;
-	display: block
-	  padding: 60px 60px;
-	  font-size: 18px;
-	  cursor: pointer;
-	  text-align: center;
-	  text-decoration: none;
-	  outline: none;
-	  color: #fff;
-	  border: none;
-	  border-radius: 15px;
-	}
+            </ion-content>
+            <div class="bar bar-footer bar-stable">
+                <div class="title">v{{appVersion}}</div>
+            </div>
+        </ion-pane>
+    </body>
 
-	.title-image{
-    display: block;
-    margin-top: 5%;
-	width: 55%
-	height: 55%
- }
-
-	</style>
-
-	<body ng-app="app" ng-controller="MyCtrl">
-
-	<ion-pane>
-
-		<div class="bar bar-header bar-positive custom-1">
-		<h1 class="title"> Abalobi Fisher </h1>
-		</div>
-
-		<ion-content class="padding has-header has-footer">
-
-		<center><img class="title-image" src="abalobi_logo.png" height="300" width="300"></center>
-
-		<button ng-click="startODK()" class="button button block padding button-calm custom-3">
-		Log my catch</button>
-
-		<button ng-click="startTelegram()" class="button button block padding button-balanced custom-4">
-		Messaging</button>
-
-    <button ng-click="startCalculator()" class="button button block padding button-balanced custom-5">
-		Calculator</button>
-
-		<button onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;" class="button button block padding button-energized custom-1">
-		Weather</button>
-
-		<button onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;" class="button button block padding button-positive custom-3">
-		Visit Abalobi website</button>
-
-    </ion-content>
-
-    <div class="bar bar-footer bar-stable">
-  <div class="title">v{{appVersion}}</div>
-</div>
-    </ion-pane>
-
-
-  </body>
 </html>
