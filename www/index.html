@@ -6,59 +6,33 @@
         <meta
             content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"
             name="viewport">
-        <script src="lib/ionic/js/ionic.bundle.js"></script>
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <script src="js/app.js"></script>
-        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-        <script src="cordova.js"></script>
     </head>
 
     <body ng-app="app" ng-controller="MyCtrl">
-        <ion-pane>
-            <div class="bar bar-header bar-positive custom-1">
-                <h1 class="title">
-                    Abalobi Fisher
-                </h1>
-            </div>
-            <ion-content class="padding has-header has-footer">
-                <center><img class="title-image" height="300" src="abalobi_logo.png" width="300"></center>
+      <ion-pane>
+        <div class="bar bar-header bar-positive custom-1">
+            <h1 class="title">
+                Abalobi Fisher
+            </h1>
+        </div>
+        <ion-nav-view>
 
-                <button
-                    class="button button block padding button-calm cs-button-whiteOnGrey"
-                    ng-click="startODK()">
-                    Log my catch</button>
+        </ion-nav-view>
+      </ion-pane>
 
-                <button
-                    class="button button block padding button-balanced custom-4"
-                    ng-click="startTelegram()">
-                    Messaging</button>
 
-                <button
-                    class="button button block padding button-balanced custom-5"
-                    ng-click="startCalculator()">
-                    Calculator</button>
 
-                <button
-                    class="button button block padding button-energized custom-1"
-                    onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;">
-                    Weather</button>
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <script src="js/routes.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/app.js"></script>
+        <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+        <script src="cordova.js"></script>
 
-                <button
-                    class="button button block padding button-energized cs-button-whiteOnGrey"
-                    ng-click="startAnalytics()">
-                    Analytics</button>
 
-                <button
-                    class="button button block padding button-positive custom-3"
-                    onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;">
-                    Visit Abalobi website</button>
 
-            </ion-content>
-            <div class="bar bar-footer bar-stable">
-                <div class="title">v{{appVersion}}</div>
-            </div>
-        </ion-pane>
     </body>
 
 </html>

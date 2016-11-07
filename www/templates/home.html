@@ -1,0 +1,44 @@
+<ion-pane>
+    <ion-content class="padding has-header has-footer">
+        <center><img class="title-image" height="300" src="abalobi_logo.png" width="300"></center>
+
+        <button
+            class="button button block padding button-calm cs-button-whiteOnGrey"
+            ng-click="startODK()">
+            Log my catch</button>
+
+        <button
+            class="button button block padding button-balanced custom-4"
+            ng-click="startTelegram()">
+            Messaging</button>
+
+        <button
+            class="button button block padding button-balanced custom-5"
+            ng-click="startCalculator()">
+            Calculator</button>
+
+        <button
+            class="button button block padding button-energized custom-1"
+            onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;">
+            Weather</button>
+
+        <button
+            class="button button block padding button-energized cs-button-whiteOnGrey"
+            ng-click="startAnalytics()">
+            Analytics</button>
+
+        <button
+            class="button button block padding button-positive custom-3"
+            onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;">
+            Visit Abalobi website</button>
+
+        <button
+            class="button button block padding button-positive custom-1"
+            ng-click="openSettings()">
+            Setup ODK</button>
+
+    </ion-content>
+    <div class="bar bar-footer bar-stable">
+        <div class="title">v{{appVersion}}</div>
+    </div>
+</ion-pane>
