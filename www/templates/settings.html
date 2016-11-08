@@ -4,18 +4,18 @@
     <div class="list">
       <label class="item item-input">
         <span class="input-label">Username</span>
-        <input type="text" ng-model="$scope.username">
+        <input type="text" ng-model="data.username">
       </label>
       <label class="item item-input">
         <span class="input-label">Password</span>
-        <input type="password" ng-model="$scope.password">
+        <input type="password" ng-model="data.password">
       </label>
       <label class="item item-input">
         <span class="input-label">ODK URL</span>
-        <input type="text" value="http://abalobi-fisher.appspot.com" ng-model="$scope.URL">
+        <input type="text" value="http://abalobi-fisher.appspot.com" ng-model="data.url">
       </label>
     </div>
-    <button class="button button block padding button-calm cs-button-10" ng-click="startODK()">
+    <button class="button button block padding button-calm cs-button-10" ng-click="buttonClick()">
       Save Settings</button>
   </div>
 
