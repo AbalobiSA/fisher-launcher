@@ -115,7 +115,11 @@ angular.module('app.controllers', [])
       // console.log("Username is " + $scope.data.username);
       // console.log(username);
       // odkConfigurator();
+      var validateUsername = $scope.data.username;
+      var validatePassword = $scope.data.password;
 
+
+      //WRITE TO FILE, alert the user when done
       cordova.exec(
           function(data) {
             //FUNCTION TO READ FROM FILE
@@ -163,10 +167,6 @@ angular.module('app.controllers', [])
               });
             }
 
-
-
-
-            // console.log(data);
             serializedFileString = data;
 
             //Alert in a popup
@@ -196,15 +196,14 @@ angular.module('app.controllers', [])
 
               });
             });
-
-
-
           },
           function(error) { console.log(error);},
           "odkConfigurator",
           "coolMethod",
           [$scope.data.username, $scope.data.password]);
 
+          //Other stuff here
+          console.log("TEST");
 
 
 
