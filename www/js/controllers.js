@@ -103,7 +103,7 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('settingsCtrl', function($scope, $ionicPopup, $http){
+.controller('settingsCtrl', function($scope, $ionicPopup, $ionicLoading, $http){
     var serializedFileString;
 
     $scope.data = {};
@@ -146,6 +146,7 @@ angular.module('app.controllers', [])
 
       validateCredentials(validateUsername, validatePassword, false, function(){
           console.log("ABSOLUTE MEGA SUCCESS!!!!!!!!");
+          $ionicLoading.hide();
 
           /*=====================================================================
             Write to file here
@@ -207,30 +208,42 @@ angular.module('app.controllers', [])
                   //Alert in a popup
                   // alert("THE FILE IS: \n\n" + serializedFileString);
 
-                  //Now, save to FILE
+                  window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory,function(dir){
+                    console.log(dir);
+                    dir.filesystem.root.getDirectory("odk", {create: true}, gotDir);
+                  });
+                  function gotDir(dirEntry) {
+                      // dirEntry.getFile("temp.txt", {create: true, exclusive: true}, gotFile);
+                      dirEntry.getFile("collect.settings", {
+                        create: true
+                      }, function(file) {
+                        console.log("got the file", file);
+                        writeFile(file, serializedFileString, true);
+
+                        var popupParams = {
+                          title: 'Settings Saved', // String. The title of the popup.
+                          cssClass: '', // String, The custom CSS class name
+                          subTitle: '', // String (optional). The sub-title of the popup.
+                          template: 'Your ODK settings have been saved! Please re-open ODK.', // String (optional). The html template to place in the popup body.
+                          templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+                          okText: '', // String (default: 'OK'). The text of the OK button.
+                          okType: '', // String (default: 'button-positive'). The type of the OK button.
+                        }
+                        $ionicPopup.alert(popupParams);
+
+
+
+                      });
+                  }
+
+                  function gotFile(fileEntry) {
+                      // Do something with fileEntry here
+                  }
+
+                  // Now, save to FILE
                   window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function(dir) {
                     console.log("got main dir", dir.name);
                     // dir.root.getDirectory("odk")
-                    dir.getFile("odk/collect.settings", {
-                      create: true
-                    }, function(file) {
-                      console.log("got the file", file);
-                      writeFile(file, serializedFileString, true);
-
-                      var popupParams = {
-                        title: 'Settings Saved', // String. The title of the popup.
-                        cssClass: '', // String, The custom CSS class name
-                        subTitle: '', // String (optional). The sub-title of the popup.
-                        template: 'Your ODK settings have been saved! Please re-open ODK.', // String (optional). The html template to place in the popup body.
-                        templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
-                        okText: '', // String (default: 'OK'). The text of the OK button.
-                        okType: '', // String (default: 'button-positive'). The type of the OK button.
-                      }
-                      $ionicPopup.alert(popupParams);
-
-
-
-                    });
                   });//End of requesting local file system URL
                 }, //End of success function from plugin
                 function(error) { console.log(error);},
@@ -245,6 +258,7 @@ angular.module('app.controllers', [])
 
       }, function(){
           //THIS IS THE ERROR CALLBACK
+          $ionicLoading.hide();
           var popupParams = {
             title: 'Login Error', // String. The title of the popup.
             cssClass: '', // String, The custom CSS class name
@@ -253,7 +267,7 @@ angular.module('app.controllers', [])
             templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
             okText: '', // String (default: 'OK'). The text of the OK button.
             okType: '', // String (default: 'button-positive'). The type of the OK button.
-          }
+          };
           $ionicPopup.alert(popupParams);
       });
 
@@ -271,6 +285,13 @@ angular.module('app.controllers', [])
           var url = 'https://abalobi-fisher.appspot.com/formList';
           // create digest request object
 
+
+            $ionicLoading.show({
+              template: 'Logging in. Please wait...'
+              + "<br /><ion-spinner></ion-spinner>"
+            });
+          
+
           $http({
             method: 'GET',
             url: url,
@@ -280,11 +301,21 @@ angular.module('app.controllers', [])
 
 
           }).then(function successCallback(response) {
+            $ionicLoading.hide();
               console.log("SUCCESS");
               // // this callback will be called asynchronously
               // // when the response is available
               // console.log(printJSON(response));
-              successCallbackMain();
+              var popupParams = {
+                title: 'ODK Already Set', // String. The title of the popup.
+                cssClass: '', // String, The custom CSS class name
+                subTitle: '', // String (optional). The sub-title of the popup.
+                template: 'You have already logged in. Please restart ODK Collect.', // String (optional). The html template to place in the popup body.
+                templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+                okText: '', // String (default: 'OK'). The text of the OK button.
+                okType: '', // String (default: 'button-positive'). The type of the OK button.
+              }
+              $ionicPopup.alert(popupParams);
 
             }, function errorCallback(response) {
               console.log("FAILURE");
@@ -508,4 +539,5 @@ angular.module('app.controllers', [])
 
 
   } //End of button click
+
 })
