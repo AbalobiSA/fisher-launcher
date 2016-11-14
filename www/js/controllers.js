@@ -145,8 +145,8 @@ angular.module('app.controllers', [])
 
 
       validateCredentials(validateUsername, validatePassword, false, function(){
-
-      })
+          console.log("ABSOLUTE MEGA SUCCESS!!!!!!!!");
+      });
 
 
 
@@ -250,138 +250,6 @@ angular.module('app.controllers', [])
       function validateCredentials (username, password, success, callback) {
           console.log("Creating initial Digest Request...");
 
-          // var req = https.get(validator_options, function(res) {
-          //     jsonHEADERS = {};
-          //     console.log("");
-          //     console.log('STATUS CODE:\n ' + res.statusCode);
-          //     console.log('HEADERS:\n ' + JSON.stringify(res.headers, null, 4));
-          //     // Buffer the body entirely for processing as a whole.
-          //     var bodyChunks = [];
-          //     res.on('data', function(chunk) {
-          //         // You can process streamed parts here...
-          //         bodyChunks.push(chunk);
-          //     }).on('end', function() {
-          //         var body = Buffer.concat(bodyChunks);
-          //         console.log(
-          //             // 'BODY: \n' + beautify(body.toString(), {
-          //             // indent_size: 4
-          //             // }
-          //             'BODY: \n' + body.toString()
-          //         );
-          //         // ...and/or process the entire body here.
-          //
-          //         //Now that the request has definitely ended,
-          //         //Start a second request!
-          //
-          //         console.log("=========================================================");
-          //         console.log("First request completed!\nCreating second request...\n");
-          //         var stringFromHeaders;
-          //
-          //         var realm;
-          //         var nonce;
-          //         var qop;
-          //
-          //         // try {
-          //             stringFromHeaders = res.headers['www-authenticate'];
-          //
-          //             //Store the WWW-Authenticate into a JSON
-          //             jsonHEADERS = splitIntoJSON(stringFromHeaders);
-          //
-          //             realm = jsonHEADERS.realm;
-          //             nonce = jsonHEADERS.nonce + "==";
-          //             qop = jsonHEADERS.qop;
-          //             var cnonce = randomString(48);
-          //             var nc = "";
-          //
-          //             console.log("Some information on the Hashing Process:\n");
-          //             console.log("Realm: " + realm +
-          //                 "\nNonce: " + nonce +
-          //                 "\nUsername: " + username +
-          //                 "\nPassword: " + password +
-          //                 "\nCNonce: " + cnonce +
-          //                 "\nQop: " + qop + "\n");
-          //
-          //             /*
-          //               HA1 = MD5(A1) = MD5(username:realm:password)
-          //               HA2 = MD5(A2) = MD5(method:digestURI)
-          //               response = MD5(HA1:nonce:HA2)
-          //             */
-          //
-          //
-          //
-          //             //TODO: Generate MD5 hashes here.
-          //             var beforeHA1 = username + ":" + realm + ":" + password;
-          //             var beforeHA2 = "GET:" + "/formList";
-          //
-          //             var ha1 = md5(beforeHA1);
-          //             var ha2 = md5(beforeHA2);
-          //             var actualResponse = md5(ha1 + ":" + nonce + ":" + nc + ":" + cnonce + ":" + qop + ":" + ha2);
-          //
-          //             console.log("Before 1st Hash: " + beforeHA1 + "\n" +
-          //                 "Before 2nd Hash: " + beforeHA2 + "\n" +
-          //                 "HA1: " + ha1 + "\n" +
-          //                 "HA2: " + ha2 + "\n" +
-          //                 "Response: " + actualResponse + "\n");
-          //
-          //             digestString = "Digest username=\"" + username + "\", " +
-          //                 "realm=\"abalobi-fisher ODK Aggregate\", " +
-          //                 "nonce=\"" + nonce + "\", " +
-          //                 "uri=\"" + "/formList" + "\", " +
-          //                 "qop=" + qop + ", " +
-          //                 "nc=" + ", " +
-          //                 "cnonce=\"" + cnonce + "\", " +
-          //                 "response=\"" + actualResponse + "\", " +
-          //                 "opaque=, ";
-          //
-          //             //We have to set up our options now.
-          //             var options2 = {
-          //                 host: 'abalobi-fisher.appspot.com',
-          //                 path: '/formList',
-          //                 mode: 'no-cors',
-          //                 headers: {
-          //                     Authorization: digestString
-          //                 }
-          //             }
-          //
-          //             console.log("Your options for this request: \n" + JSON.stringify(options2, null, 4));
-          //             console.log("\n\nA nicer view of your digest string: \n");
-          //             console.log(nicerDigest(digestString));
-          //
-          //             //NOW WE MAKE A SECOND REQUEST
-          //             createRequest(options2, success, callback);
-          //
-          //             // callback();
-          //
-          //         } catch (ex) {
-          //             console.log("ERROR: \n" + ex);
-          //             console.log("BLEH");
-          //         }
-          //
-          //     })
-          //
-          // }); //End of request
-
-          // req.on('error', function(e) {
-          //     console.log('ERROR: \n' + e.message);
-          // });
-          //
-          // var req = {
-          //  method: 'POST',
-          //  url: 'abalobi-fisher.appspot.com',
-          //  path: '/formList',
-          //  headers: {
-          //    'Content-Type': undefined
-          //  },
-          //  data: { test: 'test' }
-          // }
-          //
-          // $http(req).then(function(){
-          //   console.log("SUCCESS!");
-          // }, function(){
-          //   console.log("FAILURE!");
-          //
-          // });
-
           var url = 'https://abalobi-fisher.appspot.com/formList';
           // create digest request object
 
@@ -407,7 +275,7 @@ angular.module('app.controllers', [])
               console.log(printJSON(response.headers()));
               console.log("Okay, received headers.");
               console.log("=========================================================");
-              console.log("First request completed!\nCreating second request...\n");
+              console.log("First request completed!\nConstructing second request...\n");
 
               var stringFromHeaders;
 
@@ -448,9 +316,9 @@ angular.module('app.controllers', [])
                   var beforeHA1 = username + ":" + realm + ":" + password;
                   var beforeHA2 = "GET:" + "/formList";
 
-                  var ha1 = md5(beforeHA1);
-                  var ha2 = md5(beforeHA2);
-                  var actualResponse = md5(ha1 + ":" + nonce + ":" + nc + ":" + cnonce + ":" + qop + ":" + ha2);
+                  var ha1 = CryptoJS.MD5(beforeHA1);
+                  var ha2 = CryptoJS.MD5(beforeHA2);
+                  var actualResponse = CryptoJS.MD5(ha1 + ":" + nonce + ":" + nc + ":" + cnonce + ":" + qop + ":" + ha2);
 
                   console.log("Before 1st Hash: " + beforeHA1 + "\n" +
                       "Before 2nd Hash: " + beforeHA2 + "\n" +
@@ -470,20 +338,18 @@ angular.module('app.controllers', [])
 
                   //We have to set up our options now.
                   var options2 = {
-                      host: 'abalobi-fisher.appspot.com',
-                      path: '/formList',
-                      mode: 'no-cors',
+                      url: url,
                       headers: {
                           Authorization: digestString
                       }
-                  }
+                  };
 
                   console.log("Your options for this request: \n" + JSON.stringify(options2, null, 4));
                   console.log("\n\nA nicer view of your digest string: \n");
                   console.log(nicerDigest(digestString));
 
                   //NOW WE MAKE A SECOND REQUEST
-                  // createRequest(options2, success, callback);
+                  createRequest(options2, success, callback);
 
                   // callback();
 
@@ -527,40 +393,22 @@ angular.module('app.controllers', [])
       }
 
       function createRequest(reqOptions, success, callbackFunction) {
-          var req = https.get(reqOptions, function(res) {
-              console.log("=========================================================");
-              GLOBAL_STATUS_CODE = res.statusCode;
-              console.log('STATUS:\n ' + res.statusCode);
-              // console.log('HEADERS:\n ' + JSON.stringify(res.headers, null, 4));
-              // Buffer the body entirely for processing as a whole.
-              var bodyChunks = [];
-              res.on('data', function(chunk) {
-                  // You can process streamed parts here...
-                  bodyChunks.push(chunk);
-              }).on('end', function() {
-                  var body = Buffer.concat(bodyChunks);
-                  console.log(
-                  //     'BODY: \n' + beautify(body.toString(), {
-                  //     indent_size: 4
-                  // })
-                  'BODY: \n' + body.toString()
-                  );
-                  // ...and/or process the entire body here.
-                  if (res.statusCode == 200){
-                      success = true;
-                  }
+        console.log("Executing second request...");
+        $http(reqOptions).then(function successCallback(response) {
+          if (response.status == 200){
+            callbackFunction();
+          }
+          else {
+            console.log( "ERROR STATUS = " + response.status);
+          }
+            // console.log("SUCCESS");
+            // // this callback will be called asynchronously
+            // // when the response is available
+            // console.log(printJSON(response));
+            // console.log(printJSON(response.headers()));
+          }, function errorCallback(response) {
 
-                  callbackFunction(success);
-              })
           });
-
-          req.on('error', function(e) {
-              console.log("INTERNAL FUNCTION ERROR");
-              console.log(e);
-              console.log('ERROR: \n' + e.message);
-          });
-
-
       }
 
       var randomString = function(length) {
