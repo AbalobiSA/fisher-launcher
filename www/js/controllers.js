@@ -103,11 +103,11 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('settingsCtrl', function($scope, $ionicPopup, $ionicLoading, $http){
+.controller('settingsCtrl', function($scope, $ionicPopup, $ionicLoading, $state, $http){
     var serializedFileString;
 
     $scope.data = {};
-    $scope.data.url = "http://abalobi-fisher.appspot.com";
+    $scope.data.url = "http://abalobi-fisher.appspot.com/formList";
 
     $http.defaults.headers.common = {};
     $http.defaults.headers.post = {};
@@ -124,6 +124,7 @@ angular.module('app.controllers', [])
       // odkConfigurator();
       var validateUsername = $scope.data.username;
       var validatePassword = $scope.data.password;
+      var validateUrl = $scope.data.url;
       // var validateSuccess = false;
 
       /*=====================================================================
@@ -230,6 +231,7 @@ angular.module('app.controllers', [])
                           okType: '', // String (default: 'button-positive'). The type of the OK button.
                         }
                         $ionicPopup.alert(popupParams);
+                        $state.go("home");
 
 
 
@@ -282,7 +284,7 @@ angular.module('app.controllers', [])
       function validateCredentials (username, password, success, successCallbackMain, errorCallbackMain) {
           console.log("Creating initial Digest Request...");
 
-          var url = 'https://abalobi-fisher.appspot.com/formList';
+          var url = validateUrl;
           // create digest request object
 
 
@@ -290,7 +292,9 @@ angular.module('app.controllers', [])
               template: 'Logging in. Please wait...'
               + "<br /><ion-spinner></ion-spinner>"
             });
-          
+
+
+
 
           $http({
             method: 'GET',
@@ -316,6 +320,14 @@ angular.module('app.controllers', [])
                 okType: '', // String (default: 'button-positive'). The type of the OK button.
               }
               $ionicPopup.alert(popupParams);
+              try{
+                console.log(printJSON(response.headers()));
+                console.log(response.data);
+
+              } catch (ex){
+
+              }
+              $state.go("home");
 
             }, function errorCallback(response) {
               console.log("FAILURE");
