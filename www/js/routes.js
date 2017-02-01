@@ -24,6 +24,18 @@ angular.module('app.routes', [])
         controller: 'settingsCtrl'
     })
 
+    .state('abalobi-settings', {
+        url: '/abalobi-settings',
+        templateUrl: 'components/abalobi-settings/abalobi-settings.html',
+        controller: 'AbalobiSettingsCtrl'
+    })
+
+    .state('help-main', {
+        url: '/help',
+        templateUrl: 'components/help_main/help_main.html',
+        controller: 'help_mainCtrl'
+    })    
+
     $urlRouterProvider.otherwise('/home')
 
 

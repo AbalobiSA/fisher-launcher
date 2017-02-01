@@ -1,32 +1,39 @@
 <ion-pane>
-    <ion-content class="padding has-header has-footer">
+    <ion-content class="padding">
+        <h1 class="text-center">Abalobi Fisher</h1>
         <center><img class="title-image" height="300" src="abalobi_logo.png" width="300"></center>
-        <button class="button button block padding button-calm abalobi-button-1" ng-click="startODK()">
+        <button class="button button-block padding button-calm abalobi-button-1" ng-click="startODK()">
             <i class="fa fa-book" aria-hidden="true"></i>&nbsp;Log my catch</button>
 
-        <button class="button button block padding button-energized abalobi-button-2" ng-click="startAnalytics()">
+        <button class="button button-block padding button-energized abalobi-button-2" ng-click="startAnalytics()">
             <i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;Analytics</button>
 
-        <button class="button button block padding button-balanced abalobi-button-3" ng-click="startTelegram()">
+        <button class="button button-block padding button-balanced abalobi-button-3" ng-click="startTelegram()">
             <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;Messaging</button>
 
-        <button class="button button block padding button-balanced abalobi-button-1" ng-click="startCalculator()">
+        <button class="button button-block padding button-balanced abalobi-button-1" ng-click="startCalculator()">
             <i class="fa fa-calculator" aria-hidden="true"></i>&nbsp;Calculator</button>
 
-        <button class="button button block padding button-energized abalobi-button-2" onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;">
+        <button class="button button-block padding button-energized abalobi-button-2" onclick="window.open('https://www.google.co.za/search?q=weather', '_system', 'location=yes'); return false;">
             <i class="fa fa-cloud" aria-hidden="true"></i>&nbsp;Weather</button>
 
-        <button class="button button block padding button-positive abalobi-button-3" onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;">
+        <button class="button button-block padding button-positive abalobi-button-3" onclick="window.open('http://abalobi.info/', '_system', 'location=yes'); return false;">
             <i class="fa fa-globe" aria-hidden="true"></i>&nbsp;Visit Abalobi website</button>
 
-        <button class="button button block padding button-positive abalobi-button-1" ng-click="openSettings()">
+        <button class="button button-block padding button-positive abalobi-button-1" ng-click="openSettings()">
             <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Setup Logbook</button>
 
-        <button class="button button block padding button-positive abalobi-button-2" ng-click="openSettings()">
+        <button class="button button-block padding button-positive abalobi-button-2" ng-click="setupFisherApp()">
             <i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;Abalobi Settings</button>
 
+        <button class="button button-block padding button-positive abalobi-button-3" ng-click="openHelp()">
+            <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;Get help with Abalobi</button>            
+
+        <div class="cs-footer">
+            <div class="">v{{appVersion}}</div>
+        </div>
+
     </ion-content>
-    <div class="bar bar-footer bar-stable">
-        <div class="title">v{{appVersion}}</div>
-    </div>
+
+
 </ion-pane>
