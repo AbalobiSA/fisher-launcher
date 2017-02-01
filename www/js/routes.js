@@ -14,13 +14,13 @@ angular.module('app.routes', [])
 
     .state('home', {
         url: '/home',
-        templateUrl: 'templates/home.html',
-        controller: 'MyCtrl'
+        templateUrl: 'components/home/home.html',
+        controller: 'HomeCtrl'
     })
 
     .state('settings', {
         url: '/settings',
-        templateUrl: 'templates/settings.html',
+        templateUrl: 'components/odk_settings/settings.html',
         controller: 'settingsCtrl'
     })
 
