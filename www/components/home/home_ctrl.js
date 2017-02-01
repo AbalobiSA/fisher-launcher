@@ -1,4 +1,5 @@
-angular.module('app.controllers').controller('HomeCtrl', function($scope, $cordovaAppVersion, $location, $state) {
+angular.module('app.controllers').controller('HomeCtrl', ['$scope', '$cordovaAppVersion', '$location', '$state', function($scope, $cordovaAppVersion, $location, $state) {
+
 
     document.addEventListener("deviceready", function() {
 
@@ -21,6 +22,8 @@ angular.module('app.controllers').controller('HomeCtrl', function($scope, $cordo
         } catch (ex){
             $scope.appVersion = "0.0.0 Browser";
         }
+
+        readSettingsFromFile();
 
 
 
@@ -126,4 +129,10 @@ angular.module('app.controllers').controller('HomeCtrl', function($scope, $cordo
         $state.go("help-main");
     }
 
-})
+    function readSettingsFromFile(){
+        console.log("READING SETTINGS!");
+
+    }
+
+
+}]);

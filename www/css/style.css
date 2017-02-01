@@ -54,16 +54,19 @@
 .abalobi-button-1 {
     color: white !important;
     background-color: #95bbc3 !important;
+    font-size:  25px;
 }
 
 .abalobi-button-2 {
     color: white !important;
     background-color: #0f4162 !important;
+    font-size:  25px;
 }
 
 .abalobi-button-3 {
     color: white !important;
     background-color: #5c6f68 !important;
+    font-size:  25px;
 }
 
 /* .button {
