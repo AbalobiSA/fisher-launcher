@@ -1,4 +1,4 @@
-angular.module('app.controllers').controller('settingsCtrl', function($scope, $ionicPopup, $ionicLoading, $state, $http){
+angular.module('app.controllers').controller('settingsCtrl', function($scope, $ionicPopup, $ionicLoading, $state, $http, $translate){
     var serializedFileString;
 
     $scope.data = {};

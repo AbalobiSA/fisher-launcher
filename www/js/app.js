@@ -4,12 +4,24 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('app', ['ionic', 'ngCordova', 'app.controllers', 'app.routes'])
+angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate', 'app.controllers', 'app.routes', 'app.services'])
 
 
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $translate, appState) {
+
+
+
+  //Select the language initially
+  // appState.determineLanguage();
+
+
+    
   $ionicPlatform.ready(function() {
+
+
+
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

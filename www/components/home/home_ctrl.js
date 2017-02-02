@@ -1,4 +1,6 @@
-angular.module('app.controllers').controller('HomeCtrl', ['$scope', '$cordovaAppVersion', '$location', '$state', function($scope, $cordovaAppVersion, $location, $state) {
+angular.module('app.controllers').controller('HomeCtrl', 
+            ['$scope', '$cordovaAppVersion', '$location', '$state', 'fileStorage', '$translate', 'appState', '$ionicPlatform',
+    function($scope, $cordovaAppVersion, $location, $state, fileStorage, $translate, appState, $ionicPlatform) {
 
 
     document.addEventListener("deviceready", function() {
@@ -13,8 +15,9 @@ angular.module('app.controllers').controller('HomeCtrl', ['$scope', '$cordovaApp
     }, false);
 
     $scope.$on('$ionicView.enter', function() {
-        // console.log("GETTING APP VERSION");
 
+        
+        //Set the app version
         try {
             $cordovaAppVersion.getVersionNumber().then(function(version) {
                 $scope.appVersion = version;
@@ -23,9 +26,16 @@ angular.module('app.controllers').controller('HomeCtrl', ['$scope', '$cordovaApp
             $scope.appVersion = "0.0.0 Browser";
         }
 
-        readSettingsFromFile();
+        $ionicPlatform.ready(function(){
+            //Now read the language from file
+            appState.readLanguageFromFile();
+        })
 
 
+        
+
+
+        $scope.currentAppState = JSON.stringify(appState.getAppState(), null, 4);
 
         // console.log("APP VERSION IS: " + $scope.appVersion);
     });
@@ -129,9 +139,12 @@ angular.module('app.controllers').controller('HomeCtrl', ['$scope', '$cordovaApp
         $state.go("help-main");
     }
 
-    function readSettingsFromFile(){
-        console.log("READING SETTINGS!");
-
+    $scope.debug = function(){
+        // fileStorage.setLanguage("English");
+        // fileStorage.writeFileCustom("settings2.json", "abalobi/fisherlauncher", "This is a test", "text/plain");
+        // appState.setLanguage('en');
+        appState.readLanguageFromFile();
+        // appState.setLanguage('afr');
     }
 
 
