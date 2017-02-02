@@ -96,3 +96,8 @@
     padding-right:  5%;
     text-align:  right;
 }
+.wrap-please{
+    word-wrap: normal;
+    overflow-wrap: yes;
+    white-space: normal;
+}

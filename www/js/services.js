@@ -224,7 +224,7 @@ angular.module('app.services', [])
 
     this.setLanguage = function(input) {
         //If the language is a proper choice,
-        if (input == "en" || input == "afr") {
+        if (input == "en" || input == "afr" || input == 'xh') {
 
             //Set the language
             console.log("SETTING LANGUAGE TO " + input);
