@@ -34,3 +34,7 @@ ionic run android
 ```
 ionic serve
 ```
+---
+**Translations files**
+
+See ```www\data\locale-*.json```
