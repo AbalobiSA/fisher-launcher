@@ -134,7 +134,7 @@ angular.module('app.services', [])
             // ABALOBI_FILE_DATA = info;
             ABALOBI_FILE_PATH = "abalobi/fisherlauncher";
             ABALOBI_FILE_NAME = "settings.json";
-            var jsonFromFile = "";
+            var jsonFromFile = {};
 
             // console.log("STARTING FILE READING PROCESS...");
             try {
@@ -146,6 +146,9 @@ angular.module('app.services', [])
                         var reader = new FileReader();
 
                         reader.onloadend = function(e) {
+                            if (e){
+                                console.log("ERROR!!! " + e);
+                            }
                             console.log("FILE WAS READ SUCCESSFULY.");
                             console.log("Text is: " + this.result);
                             // document.querySelector("#textArea").innerHTML = this.result;
@@ -200,10 +203,17 @@ angular.module('app.services', [])
         if (!gotSettingsFromFile) {
             console.log("Running initial read.");
             fileStorage.readSettingsFile(function(jsonFromFile) {
+                // console.log("DEBUG: LOGGING JSONFROMFILE: \n" + jsonFromFile);
                 //Only run once, when the app launches.
-                currentAppState = jsonFromFile;
-                $translate.use(currentAppState.language);
-                gotSettingsFromFile = true;
+                if (jsonFromFile == null){
+                    console.log("For some reason, reading of the file failed.");
+                    currentAppState.language = 'en';
+                    $translate.use(currentAppState.language);
+                } else{
+                    currentAppState = jsonFromFile;
+                    $translate.use(currentAppState.language);
+                    gotSettingsFromFile = true;
+                }
             }, function() {
                 console.log("File reading failed. Falling back to default language.");
                 gotSettingsFromFile = true;

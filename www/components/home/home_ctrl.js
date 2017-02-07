@@ -31,10 +31,6 @@ angular.module('app.controllers').controller('HomeCtrl',
             appState.readLanguageFromFile();
         })
 
-
-        
-
-
         $scope.currentAppState = JSON.stringify(appState.getAppState(), null, 4);
 
         // console.log("APP VERSION IS: " + $scope.appVersion);
@@ -146,6 +142,4 @@ angular.module('app.controllers').controller('HomeCtrl',
         appState.readLanguageFromFile();
         // appState.setLanguage('afr');
     }
-
-
 }]);
