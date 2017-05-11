@@ -184,10 +184,10 @@ angular.module('app.controllers').controller('settingsCtrl', function($scope, $i
 
 
             $ionicLoading.show({
-              template: 'Logging in. Please wait...'
+              template: 'Logging in. Please wait 15s...'
               + "<br /><ion-spinner></ion-spinner>"
             });
-
+            //TODO: Add translations for all user-visible text in this file
 
 
 
