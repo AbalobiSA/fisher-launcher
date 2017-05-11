@@ -11,6 +11,7 @@ Install required plugins:
 
 
     $ ionic plugin add https://github.com/Initsogar/cordova-webintent
+    $ cordova plugin add https://github.com/mwaylabs/cordova-webintent.git
     $ cordova plugin add cordova-plugin-inappbrowser
     $ cordova plugin add com.lampa.startapp
     $ ionic plugin add https://github.com/apache/cordova-plugin-whitelist.git
