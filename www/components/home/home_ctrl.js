@@ -1,7 +1,9 @@
-angular.module('app.controllers').controller('HomeCtrl', 
+angular.module('app.controllers').controller('HomeCtrl',
             ['$scope', '$cordovaAppVersion', '$location', '$state', 'fileStorage', '$translate', 'appState', '$ionicPlatform',
     function($scope, $cordovaAppVersion, $location, $state, fileStorage, $translate, appState, $ionicPlatform) {
-
+/*============================================================================
+    Initialization
+ ============================================================================*/
 
     document.addEventListener("deviceready", function() {
 
@@ -16,7 +18,7 @@ angular.module('app.controllers').controller('HomeCtrl',
 
     $scope.$on('$ionicView.enter', function() {
 
-        
+
         //Set the app version
         try {
             $cordovaAppVersion.getVersionNumber().then(function(version) {
@@ -29,13 +31,16 @@ angular.module('app.controllers').controller('HomeCtrl',
         $ionicPlatform.ready(function(){
             //Now read the language from file
             appState.readLanguageFromFile();
-        })
+        });
 
         $scope.currentAppState = JSON.stringify(appState.getAppState(), null, 4);
 
         // console.log("APP VERSION IS: " + $scope.appVersion);
     });
 
+/*============================================================================
+    Main Functions
+ ============================================================================*/
 
     $scope.startODK = function() {
 
@@ -48,7 +53,7 @@ angular.module('app.controllers').controller('HomeCtrl',
             console.log(values);
         }, function(error) { /* fail */
             var x = window.confirm("You need OpenDataKit to log your catch, but it is not installed. \n\nWould you like to install it now using the Google Play Store?");
-            if (x == true) {
+            if (x === true) {
                 window.open('https://play.google.com/store/apps/details?id=org.odk.collect.android', '_system')
             }
         });
@@ -60,7 +65,7 @@ angular.module('app.controllers').controller('HomeCtrl',
             //alert(error);
         });
 
-    }
+    };
 
     $scope.startTelegram = function() {
 
@@ -73,7 +78,7 @@ angular.module('app.controllers').controller('HomeCtrl',
             console.log(values)
         }, function(error) { /* fail */
             var x = window.confirm("You need Telegram to send messages, but it is not installed. \n\nWould you like to install it now using the Google Play Store?");
-            if (x == true) {
+            if (x === true) {
                 window.open('https://play.google.com/store/apps/details?id=org.telegram.messenger', '_system')
             }
         });
@@ -81,7 +86,7 @@ angular.module('app.controllers').controller('HomeCtrl',
         sApp.start(function() { /* success */
             console.log(values)
         }, function(error) { /* fail */ });
-    }
+    };
 
     $scope.startCalculator = function() {
 
@@ -99,7 +104,7 @@ angular.module('app.controllers').controller('HomeCtrl',
         sApp.start(function() { /* success */
             console.log(values)
         }, function(error) { /* fail */ });
-    }
+    };
 
     $scope.startAnalytics = function() {
 
@@ -112,7 +117,7 @@ angular.module('app.controllers').controller('HomeCtrl',
             console.log(values)
         }, function(error) { /* fail */
             var x = window.confirm("You need Abalobi Analytics, but it is not installed.  \n\nWould you like to install it now using the Google Play Store?");
-            if (x == true) {
+            if (x === true) {
                 // TODO: Add the play store link
                 window.open('https://play.google.com/store/apps/details?id=com.abalobi.fisheranalytics', '_system')
             }
@@ -121,19 +126,19 @@ angular.module('app.controllers').controller('HomeCtrl',
         sApp.start(function() { /* success */
             console.log(values)
         }, function(error) { /* fail */ });
-    }
+    };
 
     $scope.openSettings = function() {
         $state.go("settings");
-    }
+    };
 
     $scope.setupFisherApp = function(){
         $state.go("abalobi-settings");
-    }
+    };
 
     $scope.openHelp = function(){
         $state.go("help-main");
-    }
+    };
 
     $scope.debug = function(){
         // fileStorage.setLanguage("English");
