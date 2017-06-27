@@ -1,24 +1,39 @@
-<ion-pane>
+<ion-pane ng-controller="help_mainCtrl">
     <ion-content class="padding">
-        <h1 class="text-center">Abalobi Help</h1>
-        <button class="button button-block button-positive"
-        onclick="window.open('http://abalobi.info/getting-started/', '_system', 'location=yes'); return false;">
-            <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;{{"HELP_SITE_BUTTON" | translate}}
-        </button>
-        <ul class="list">
-            <p>
-                {{"HELP_SCREEN_HEADER" | translate}}
-            </p>
+        <h1 class="text-center" style="padding-bottom: 10px">Abalobi Help</h1>
 
-            <li class="item wrap-please">
-                {{"HELP_OPTION_1" | translate}}
-            </li>
-            <li class="item wrap-please">
-                {{"HELP_OPTION_2" | translate}}
-            </li>
-            <li class="item wrap-please">
-                {{"HELP_OPTION_3" | translate}}
-            </li>
-        </ul>
+        <form class="text-center" style="height: 60%;">
+            <div style="width: 100%;">
+                <label style="width: 20%" for="issues">Issue:</label>
+                <select style="width: 80%" id="issues" ng-model="selected.text">
+                    <option ng-repeat="issue in this.issues">
+                        {{ issue }}
+                    </option>
+                </select>
+            </div>
+
+            <textarea id='description' class="issue-textarea" placeholder="Please enter a description of the issue you are encountering" ng-model="desc.text"></textarea>
+
+            <input style="width: 90%;" class="button padding button-energized abalobi-button-2" type="submit" value="Submit" ng-click="this.sendIssue()">
+        </form>
+        <!--<button class="button button-block button-positive"-->
+        <!--onclick="window.open('http://abalobi.info/getting-started/', '_system', 'location=yes'); return false;">-->
+            <!--<i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp;{{"HELP_SITE_BUTTON" | translate}}-->
+        <!--</button>-->
+        <!--<ul class="list">-->
+            <!--<p>-->
+                <!--{{"HELP_SCREEN_HEADER" | translate}}-->
+            <!--</p>-->
+
+            <!--<li class="item wrap-please">-->
+                <!--{{"HELP_OPTION_1" | translate}}-->
+            <!--</li>-->
+            <!--<li class="item wrap-please">-->
+                <!--{{"HELP_OPTION_2" | translate}}-->
+            <!--</li>-->
+            <!--<li class="item wrap-please">-->
+                <!--{{"HELP_OPTION_3" | translate}}-->
+            <!--</li>-->
+        <!--</ul>-->
     </ion-content>
 </ion-pane>
