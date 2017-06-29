@@ -1,14 +1,12 @@
 angular.module('app.controllers').controller('help_mainCtrl', function($scope, $http, $cordovaAppVersion, $location, $state, $translate) {
 
     $scope.issues = [
-        'Issue 1',
-        'Issue 2',
-        'Issue 3',
-        'Issue 4',
-        'Issue 5',
-        'Issue 6',
-        'Issue 7',
-        'Issue 8',
+        'Logging a catch',
+        'Analytics',
+        'Messaging',
+        'Calculator',
+        'Weather',
+        'Logbook',
         'Other'
     ];
     $scope.desc = {};
@@ -37,8 +35,10 @@ angular.module('app.controllers').controller('help_mainCtrl', function($scope, $
                     'desc': $scope.desc.text === undefined ? '' : $scope.desc.text.trim()
                 }
             }).then(function (resp) {
+                alert('Your issue has been logged');
                 console.log('Your issue has been send');
             }, function (err) {
+                alert('Your issue could not be sent');
                 console.log('Your issue has failed to send');
             });
         }
