@@ -1,13 +1,13 @@
 angular.module('app.controllers').controller('help_mainCtrl', function($scope, $http, $cordovaAppVersion, $location, $state, $translate) {
 
     $scope.issues = [
-        'Logging a catch',
-        'Analytics',
-        'Messaging',
-        'Calculator',
-        'Weather',
-        'Logbook',
-        'Other'
+        'ISSUE_LOGGIN_CATCH',
+        'ISSUE_ANALYTICS',
+        'ISSUE_MESSAGING',
+        'ISSUE_CALCULATOR',
+        'ISSUE_WEATHER',
+        'ISSUE_LOGBOOK',
+        'ISSUE_OTHER'
     ];
     $scope.desc = {};
     $scope.selected = {};

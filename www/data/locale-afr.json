@@ -20,5 +20,15 @@
 
 	"HEADER_ABALOBI_FISHER":"Abalobi Visser",
 	"HEADER_LOGBOOK_SETTINGS":"Logboek Instellings",
-	"HEADER_ABALOBI_SETTINGS":"Abalobi Instellings"
+	"HEADER_ABALOBI_SETTINGS":"Abalobi Instellings",
+
+    "ISSUE_LOGGIN_CATCH": "Aantekening van 'n vangs",
+    "ISSUE_ANALYTICS": "Grafieke en Finansies",
+    "ISSUE_MESSAGING": "Boodskappe",
+    "ISSUE_CALCULATOR": "Sakrekenaar",
+    "ISSUE_WEATHER": "Weervoorspelling",
+    "ISSUE_LOGBOOK": "Aantekeningsboek",
+    "ISSUE_OTHER": "Ander",
+    "ISSUE_PLACEHOLDER": "Voer asseblief 'n beskrywing van die probleem in wat u ondervind",
+    "ISSUE": "Probleem:"
 }

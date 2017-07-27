@@ -20,5 +20,15 @@
 
 	"HEADER_ABALOBI_FISHER":"Abalobi Fisher",
 	"HEADER_LOGBOOK_SETTINGS":"Logbook Settings",
-	"HEADER_ABALOBI_SETTINGS":"Abalobi Settings"
+	"HEADER_ABALOBI_SETTINGS":"Abalobi Settings",
+
+    "ISSUE_LOGGIN_CATCH": "Logging a catch",
+    "ISSUE_ANALYTICS": "Analytics",
+    "ISSUE_MESSAGING": "Messaging",
+    "ISSUE_CALCULATOR": "Calculator",
+    "ISSUE_WEATHER": "Weather",
+    "ISSUE_LOGBOOK": "Logbook",
+    "ISSUE_OTHER": "Other",
+    "ISSUE_PLACEHOLDER": "Please enter a description of the issue you are encountering",
+    "ISSUE": "Issue:"
 }
