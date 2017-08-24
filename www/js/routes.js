@@ -11,7 +11,7 @@ angular.module('app.routes', [])
 
     $translateProvider.preferredLanguage('en');
     $translateProvider.fallbackLanguage("en");
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy();
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -43,7 +43,7 @@ angular.module('app.routes', [])
         url: '/help',
         templateUrl: 'components/help_main/help_main.html',
         controller: 'help_mainCtrl'
-    })    
+    })
 
     $urlRouterProvider.otherwise('/home')
 
