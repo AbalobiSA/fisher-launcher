@@ -1,4 +1,9 @@
 {
   "name": "Abalobi",
-  "app_id": "448af405"
+  "app_id": "448af405",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1",
+  "watchPatterns": []
 }
