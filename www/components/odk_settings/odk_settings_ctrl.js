@@ -2,7 +2,7 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
     var serializedFileString;
 
     $scope.data = {};
-    $scope.data.url = "http://abalobi-fisher.appspot.com/formList";
+    $scope.data.url = "http://server.abalobi.info/formList";
 
     $http.defaults.headers.common = {};
     $http.defaults.headers.post = {};
@@ -22,15 +22,6 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
         var validateUrl = $scope.data.url;
         // var validateSuccess = false;
 
-        /*=====================================================================
-          Options for HTTP Requests
-        =====================================================================*/
-        var GLOBAL_STATUS_CODE = 0;
-
-        var validator_options = {
-            host: 'abalobi-fisher.appspot.com',
-            path: '/formList'
-        };
 
         /*==============================================================================
           HANDLE REQUESTS HERE
@@ -40,121 +31,137 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
         var jsonHEADERS;
 
 
-        validateCredentials(validateUsername, validatePassword, false, function () {
+        validateCredentials(
+            validateUsername,
+            validatePassword,
+            false,
+            handle_login_success,
+            handle_login_error
+        );
+
+        function handle_login_success () {
             console.log("ABSOLUTE MEGA SUCCESS!!!!!!!!");
             $ionicLoading.hide();
-
             /*=====================================================================
               Write to file here
             =====================================================================*/
+            serializedFileString = {
+                "general": {
+                    "password": validatePassword,
+                    "username": validateUsername,
+                    "server_url": "http://server.abalobi.info",
+                    "metadata_username": validateUsername,
+                    "formlist_url" : "/formList",
+                    "protocol":"odk_default",
+                    "navigation":"swipe",
+                    "high_resolution":true,
+                    // "autosend_wifi":true,
+                    "autosend": "wifi_only",
+                    "map_sdk_behavior":"google_maps",
+                    // "autosend_network":"off",
+                    "delete_send":false,
+                    "default_completed":true
+                },
+                "admin": {
 
+                }
+            };
+
+            serializedFileString = JSON.stringify(serializedFileString, null, 4);
 
             //WRITE TO FILE, alert the user when done
             try {
-                cordova.exec(
-                    function (data) {
-                        //FUNCTION TO READ FROM FILE
-                        function readFile(fileEntry) {
+                //FUNCTION TO READ FROM FILE
+                function readFile(fileEntry) {
+                    fileEntry.file(function (file) {
+                        var reader = new FileReader();
 
-                            fileEntry.file(function (file) {
-                                var reader = new FileReader();
+                        reader.onloadend = function () {
+                            console.log("Successful file read: " + this.result);
+                            displayFileData(fileEntry.fullPath + ": " + this.result);
+                        };
 
-                                reader.onloadend = function () {
-                                    console.log("Successful file read: " + this.result);
-                                    displayFileData(fileEntry.fullPath + ": " + this.result);
-                                };
+                        reader.readAsText(file);
+                    }, onErrorReadFile);
+                }
 
-                                reader.readAsText(file);
+                //FUNCTION TO WRITE TO FILE
+                function writeFile(fileEntry, dataObj, isAppend) {
+                    // Create a FileWriter object for our FileEntry (log.txt).
+                    fileEntry.createWriter(function (fileWriter) {
 
-                            }, onErrorReadFile);
+                        fileWriter.onwriteend = function () {
+                            console.log("Successful file read...");
+                            // readFile(fileEntry);
+                        };
+
+                        fileWriter.onerror = function (e) {
+                            console.log("Failed file read: " + e.toString());
+                        };
+
+                        // If we are appending data to file, go to the end of the file.
+                        if (isAppend) {
+                            try {
+                                // fileWriter.seek(fileWriter.length);
+                            } catch (e) {
+                                console.log("file doesn't exist!");
+                            }
                         }
-
-                        //FUNCTION TO WRITE TO FILE
-                        function writeFile(fileEntry, dataObj, isAppend) {
-                            // Create a FileWriter object for our FileEntry (log.txt).
-                            fileEntry.createWriter(function (fileWriter) {
-
-                                fileWriter.onwriteend = function () {
-                                    console.log("Successful file read...");
-                                    // readFile(fileEntry);
-                                };
-
-                                fileWriter.onerror = function (e) {
-                                    console.log("Failed file read: " + e.toString());
-                                };
-
-                                // If we are appending data to file, go to the end of the file.
-                                if (isAppend) {
-                                    try {
-                                        // fileWriter.seek(fileWriter.length);
-                                    } catch (e) {
-                                        console.log("file doesn't exist!");
-                                    }
-                                }
-                                var blob = new Blob([dataObj], {type: 'application/java-serialized-object'});
-                                fileWriter.write(blob);
+                        var blob = new Blob([dataObj], {type: 'application/json'});
+                        fileWriter.write(blob);
 
 
-                                // fileWriter.write(dataObj);
-                            });
+                        // fileWriter.write(dataObj);
+                    });
+                }
+
+                // serializedFileString = data;
+
+                //Alert in a popup
+                // alert("THE FILE IS: \n\n" + serializedFileString);
+
+                window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dir) {
+                    console.log(dir);
+                    dir.filesystem.root.getDirectory("odk", {create: true}, gotDir);
+                });
+
+                function gotDir(dirEntry) {
+                    // dirEntry.getFile("temp.txt", {create: true, exclusive: true}, gotFile);
+                    dirEntry.getFile("collect.settings.json", {
+                        create: true
+                    }, function (file) {
+                        console.log("got the file", file);
+                        writeFile(file, serializedFileString, true);
+
+                        var popupParams = {
+                            title: 'Settings Saved', // String. The title of the popup.
+                            cssClass: '', // String, The custom CSS class name
+                            subTitle: '', // String (optional). The sub-title of the popup.
+                            template: 'Your ODK settings have been saved! Please re-open ODK.', // String (optional). The html template to place in the popup body.
+                            templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
+                            okText: '', // String (default: 'OK'). The text of the OK button.
+                            okType: '', // String (default: 'button-positive'). The type of the OK button.
                         }
-
-                        serializedFileString = data;
-
-                        //Alert in a popup
-                        // alert("THE FILE IS: \n\n" + serializedFileString);
-
-                        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dir) {
-                            console.log(dir);
-                            dir.filesystem.root.getDirectory("odk", {create: true}, gotDir);
-                        });
-
-                        function gotDir(dirEntry) {
-                            // dirEntry.getFile("temp.txt", {create: true, exclusive: true}, gotFile);
-                            dirEntry.getFile("collect.settings", {
-                                create: true
-                            }, function (file) {
-                                console.log("got the file", file);
-                                writeFile(file, serializedFileString, true);
-
-                                var popupParams = {
-                                    title: 'Settings Saved', // String. The title of the popup.
-                                    cssClass: '', // String, The custom CSS class name
-                                    subTitle: '', // String (optional). The sub-title of the popup.
-                                    template: 'Your ODK settings have been saved! Please re-open ODK.', // String (optional). The html template to place in the popup body.
-                                    templateUrl: '', // String (optional). The URL of an html template to place in the popup   body.
-                                    okText: '', // String (default: 'OK'). The text of the OK button.
-                                    okType: '', // String (default: 'button-positive'). The type of the OK button.
-                                }
-                                $ionicPopup.alert(popupParams);
-                                $state.go("home");
+                        $ionicPopup.alert(popupParams);
+                        $state.go("home");
 
 
-                            });
-                        }
+                    });
+                }
 
-                        function gotFile(fileEntry) {
-                            // Do something with fileEntry here
-                        }
-
-                        // Now, save to FILE
-                        window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dir) {
-                            console.log("got main dir", dir.name);
-                            // dir.root.getDirectory("odk")
-                        });//End of requesting local file system URL
-                    }, //End of success function from plugin
-                    function (error) {
-                        console.log(error);
-                    },
-                    "odkConfigurator",
-                    "coolMethod",
-                    [$scope.data.username, $scope.data.password]);
+                // Now, save to FILE
+                window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dir) {
+                    console.log("got main dir", dir.name);
+                    // dir.root.getDirectory("odk")
+                });//End of requesting local file system URL
             } catch (ex) {
                 // console.log("Meh, you are probably in a browser.");
             }
 
 
-        }, function () {
+        }
+
+        function handle_login_error () {
             //THIS IS THE ERROR CALLBACK
             $ionicLoading.hide();
             var popupParams = {
@@ -167,13 +174,17 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
                 okType: '', // String (default: 'button-positive'). The type of the OK button.
             };
             $ionicPopup.alert(popupParams);
-        });
+        }
 
 
         /*=====================================================================
           Functions
         =====================================================================*/
-        function validateCredentials(username, password, success, successCallbackMain, errorCallbackMain) {
+        function validateCredentials(username,
+                                     password,
+                                     success,
+                                     successCallbackMain,
+                                     errorCallbackMain) {
             console.log("Creating initial Digest Request...");
 
             var url = validateUrl;
@@ -242,7 +253,7 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
                 var qop;
 
                 try {
-                    stringFromHeaders = response.headers()['www-authenticate'];
+                    stringFromHeaders = response.headers()['www-authenticate'] || response.headers()['WWW-Authenticate'];
                     console.log("HEADERS AS A STRING: " + stringFromHeaders);
 
                     //Store the WWW-Authenticate into a JSON
@@ -423,27 +434,11 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
 
         var printJSON = function (receivedJSON) {
             return JSON.stringify(receivedJSON, null, 4);
-        }
-
-        //FILE SYSTEM METHODS
-        function gotFS(fileSystem) {
-            fileSystem.root.getDirectory("odk", {create: true}, gotDir, fail);
-            console.log(fileSystem.root);
-        }
-
-        function gotDir(dirEntry) {
-            dirEntry.getFile("myfile.txt", {create: true, exclusive: true}, gotFile, fail);
-        }
-
-        function gotFile(fileEntry) {
-            // Do something with fileEntry here
-        }
-
-        function fail(error) {
-            console.log(error.code);
-        }
+        };
 
 
-    } //End of button click
+
+
+    }; //End of button click
 
 })
