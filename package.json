@@ -1,6 +1,6 @@
 {
   "name": "abalobi",
-  "version": "1.2.0",
+  "version": "1.6.1",
   "description": "Abalobi: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",

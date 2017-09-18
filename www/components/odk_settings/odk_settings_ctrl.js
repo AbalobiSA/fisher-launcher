@@ -54,11 +54,9 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
                     "formlist_url" : "/formList",
                     "protocol":"odk_default",
                     "navigation":"swipe",
-                    "high_resolution":true,
-                    // "autosend_wifi":true,
-                    "autosend": "wifi_only",
+                    "high_resolution":false,
+                    "autosend": "wifi_and_cellular",
                     "map_sdk_behavior":"google_maps",
-                    // "autosend_network":"off",
                     "delete_send":false,
                     "default_completed":true
                 },
