@@ -8,7 +8,7 @@
                     <div class="input-label">
                         {{"ISSUE" | translate}}
                     </div>
-                    <select>
+                    <select ng-model="selected.text">
                         <option ng-repeat="issue in this.issues">
                             {{ issue | translate }}
                         </option>
@@ -20,7 +20,10 @@
             <textarea id='description' class="issue-textarea"
                       placeholder="{{ 'ISSUE_PLACEHOLDER' | translate }}" ng-model="desc.text"></textarea>
 
-            <input style="width: 100%;" class="button padding button-energized abalobi-button-2" type="submit" value="Submit" ng-click="this.sendIssue()">
+            <input style="width: 100%;" class="button padding button-energized abalobi-button-2"
+                   type="submit"
+                   value="Submit"
+                   ng-click="this.sendIssue()">
         </form>
     </ion-content>
 </ion-pane>

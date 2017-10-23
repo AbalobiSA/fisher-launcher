@@ -1,4 +1,5 @@
-angular.module('app.controllers').controller('help_mainCtrl', function($scope, $http, $cordovaAppVersion, $location, $state, $translate) {
+angular.module('app.controllers').controller('help_mainCtrl',
+    function($scope, $http, $cordovaAppVersion, $location, $state, $translate) {
 
     $scope.issues = [
         'ISSUE_LOGGIN_CATCH',
