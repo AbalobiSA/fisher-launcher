@@ -20,9 +20,9 @@ angular.module('app.controllers').controller('help_mainCtrl',
     $scope.sendIssue = function () {
 
         if ($scope.selected.text === undefined || $scope.selected.text.trim().length === 0) {
-            alert('Please select a issue');
+            alert('Please select an issue!');
         } else if ($scope.desc.text === undefined || $scope.desc.text.trim().length === 0) {
-            alert('Please add a description');
+            alert('Please add a description.');
         } else {
             // console.log($scope.desc.text.trim());
             // console.log($scope.selected.text.trim());
@@ -36,10 +36,10 @@ angular.module('app.controllers').controller('help_mainCtrl',
                     'desc': $scope.desc.text === undefined ? '' : $scope.desc.text.trim()
                 }
             }).then(function (resp) {
-                alert('Your issue has been logged');
-                console.log('Your issue has been send');
+                alert('Thank you! Your issue has been logged.');
+                console.log('Your issue has been sent.');
             }, function (err) {
-                alert('Your issue could not be sent');
+                alert('Your issue could not be sent!');
                 console.log('Your issue has failed to send');
             });
         }
