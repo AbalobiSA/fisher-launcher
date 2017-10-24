@@ -48,7 +48,8 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-file": {},
       "cordova-plugin-app-version": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "com.lampa.startapp": {}
     }
   }
 }
