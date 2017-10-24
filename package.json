@@ -1,6 +1,6 @@
 {
   "name": "abalobi",
-  "version": "1.6.3",
+  "version": "1.7.0",
   "description": "Abalobi: An Ionic project",
   "dependencies": {
     "com.lampa.startapp": "^0.1.4",
