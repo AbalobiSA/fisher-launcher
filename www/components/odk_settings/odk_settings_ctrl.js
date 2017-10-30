@@ -47,21 +47,36 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
             =====================================================================*/
             serializedFileString = {
                 "general": {
-                    "password": validatePassword,
-                    "username": validateUsername,
-                    "server_url": "http://server.abalobi.info",
-                    "metadata_username": validateUsername,
-                    "formlist_url" : "/formList",
-                    "protocol":"odk_default",
-                    "navigation":"swipe",
-                    "high_resolution":false,
                     "autosend": "wifi_and_cellular",
-                    "map_sdk_behavior":"google_maps",
+                    "analytics": false,
+                    "default_completed": true,
                     "delete_send":false,
-                    "default_completed":true
+                    "formlist_url" : "/formList",
+                    "high_resolution":false,
+                    "image_size": "very_small",
+                    "map_sdk_behavior":"google_maps",
+                    "metadata_username": validateUsername,
+                    "navigation":"swipe",
+                    "password": validatePassword,
+                    "protocol":"odk_default",
+                    "server_url": "http://server.abalobi.info",
+                    "username": validateUsername
                 },
                 "admin": {
-
+                    "mark_as_finalized": false,
+                    "analytics": false,
+                    "change_constraint_behavior": false,
+                    "save_as": false,
+                    "delete_after_send": false,
+                    "change_autosend": false,
+                    "change_form_metadata": false,
+                    "show_splash_screen": false,
+                    "change_navigation": false,
+                    "show_map_sdk": false,
+                    "instance_form_sync": false,
+                    "default_to_finalized": false,
+                    "high_resolution": false,
+                    "show_map_basemap": false
                 }
             };
 
