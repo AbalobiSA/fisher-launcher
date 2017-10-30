@@ -6,19 +6,13 @@ angular.module('app.controllers').controller('HomeCtrl',
  ============================================================================*/
 
     document.addEventListener("deviceready", function() {
-
         $cordovaAppVersion.getVersionNumber().then(function(version) {
             $scope.appVersion = version;
         });
-
         console.log("APP VERSION IS: " + $scope.appVersion);
-
-
     }, false);
 
     $scope.$on('$ionicView.enter', function() {
-
-
         //Set the app version
         try {
             $cordovaAppVersion.getVersionNumber().then(function(version) {
@@ -34,7 +28,6 @@ angular.module('app.controllers').controller('HomeCtrl',
         });
 
         $scope.currentAppState = JSON.stringify(appState.getAppState(), null, 4);
-
         // console.log("APP VERSION IS: " + $scope.appVersion);
     });
 
@@ -43,7 +36,6 @@ angular.module('app.controllers').controller('HomeCtrl',
  ============================================================================*/
 
     $scope.startODK = function() {
-
         var sApp = startApp.set({ /* params */
             "package": "org.odk.collect.android",
             "intentstart": "startActivity"
