@@ -8,6 +8,7 @@
   "dependencies": {
     "font-awesome": "fontawesome#^4.7.0",
     "angular-local-storage": "^0.5.2",
-    "angular-translate": "^2.13.1"
+    "angular-translate": "^2.13.1",
+    "ngCordova": "^0.1.27-alpha"
   }
 }

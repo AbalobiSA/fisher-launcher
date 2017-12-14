@@ -1,13 +1,25 @@
 # Abalobi Fisher
-Abalobi Fisher - Ionic app for launching ODK / Telegram / Weather etc
+
+Abalobi Fisher is a "menu" app build in Ionic 1 / Angular 1, for launching
+other apps in the Abalobi Suite. We use this app as an easy way for fishers
+to access different functionality across the Abalobi system in one convenient 
+place.
+
+### Getting Started 
+
+Clone the repo, install dependencies
 
     $ git clone https://github.com/AbalobiSA/fisher-launcher.git
     $ cd fisher-launcher
-    $ cordova platform add android
-    $ bower install ngCordova
+    $ npm install -g bower 
+    $ bower install 
+    $ yarn
 
+Install android
 
-Install required plugins:
+    $ cordova platform add android --save
+
+Install required cordova plugins:
 
 
     $ ionic plugin add https://github.com/Initsogar/cordova-webintent
@@ -21,7 +33,10 @@ Install required plugins:
     $ cordova plugin add cordova-plugin-compat
     $ cordova plugin add https://github.com/nova-web-dev/abalobi-odk-configurator.git
 
+    
+Launch in browser:
 
+    $ ionic serve 
 
 **To check plugins installed (should list above plugins):**
 ```
