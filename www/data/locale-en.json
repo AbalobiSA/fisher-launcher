@@ -29,6 +29,7 @@
     "ISSUE_WEATHER": "Weather",
     "ISSUE_LOGBOOK": "Logbook",
     "ISSUE_OTHER": "Other",
-    "ISSUE_PLACEHOLDER": "Please enter a description of the issue you are encountering",
+	"ISSUE_PLACEHOLDER": "Please enter a description of the issue you are encountering",
+	"ISSUE_PHONE": "Phone Number",
     "ISSUE": "Issue:"
 }

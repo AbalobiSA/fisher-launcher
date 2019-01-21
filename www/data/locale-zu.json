@@ -20,5 +20,6 @@
 
 	"HEADER_ABALOBI_FISHER":"Abalobi Fisher",
 	"HEADER_LOGBOOK_SETTINGS":"Logbook Settings",
-	"HEADER_ABALOBI_SETTINGS":"Abalobi Settings"
+	"HEADER_ABALOBI_SETTINGS":"Abalobi Settings",
+	"ISSUE_PHONE": "Phone Number"
 }

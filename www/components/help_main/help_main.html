@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <h1 class="text-center" style="padding-bottom: 10px">Abalobi Help</h1>
 
-        <form style="height: 60%;">
+        <form style="height: 100%">
             <div class="list">
                 <label class="item item-input item-select">
                     <div class="input-label">
@@ -17,10 +17,13 @@
 
             </div>
 
+            <input id='phone' class="issue-input"
+                      placeholder="{{ 'ISSUE_PHONE' | translate }}" ng-model="phone.text">
+
             <textarea id='description' class="issue-textarea"
                       placeholder="{{ 'ISSUE_PLACEHOLDER' | translate }}" ng-model="desc.text"></textarea>
 
-            <input style="width: 100%;" class="button padding button-energized abalobi-button-2"
+            <input style="width: 100%; margin-bottom: 20px;" class="button padding button-energized abalobi-button-2"
                    type="submit"
                    value="Submit"
                    ng-click="this.sendIssue()">
