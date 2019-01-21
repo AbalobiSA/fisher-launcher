@@ -12,15 +12,31 @@ angular.module('app', ['ionic', 'ngCordova', 'pascalprecht.translate', 'app.cont
 
 
 
-  //Select the language initially
-  // appState.determineLanguage();
-
-
     
   $ionicPlatform.ready(function() {
 
 
+    /*  BEGIN SET UP FOR SECRETS.JS GLOBAL */
 
+    var secrets = {};
+
+    // Import variables if present (from env.js)
+    if(window){  
+      Object.assign(secrets, window.__secrets);
+    }
+    
+    // Define AngularJS application
+    var ngModule = angular.module('app', []);
+    
+    // Register environment in AngularJS as constant
+    ngModule.constant('__secrets', secrets);
+      
+    /*  END SET UP FOR SECRETS.JS GLOBAL */
+
+
+
+    //Select the language initially
+    // appState.determineLanguage();
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

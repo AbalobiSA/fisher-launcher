@@ -9,3 +9,5 @@ node_scripts/
 .idea/
 .DS_Store/
 .DS_Store
+secrets.js
+www/secrets.js

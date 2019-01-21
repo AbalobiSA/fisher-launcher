@@ -2,12 +2,13 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
     var serializedFileString;
 
     $scope.data = {};
-    $scope.data.url = "http://server.abalobi.info/formList";
+    $scope.data.url = __secrets.urls.abalobi_api + "/formList";
 
     $http.defaults.headers.common = {};
     $http.defaults.headers.post = {};
     $http.defaults.headers.put = {};
     $http.defaults.headers.patch = {};
+
 
 
     /*=====================================================================
@@ -59,7 +60,7 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
                     "navigation":"swipe",
                     "password": validatePassword,
                     "protocol":"odk_default",
-                    "server_url": "http://server.abalobi.info",
+                    "server_url": __secrets.urls.API_URL,
                     "username": validateUsername
                 },
                 "admin": {

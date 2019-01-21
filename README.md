@@ -15,6 +15,10 @@ Clone the repo, install dependencies
     $ bower install 
     $ yarn
 
+Copy the Secrets File into Project
+
+    $ The secrets.js file once obtained should be placed in the /www directory
+
 Install android
 
     $ cordova platform add android --save

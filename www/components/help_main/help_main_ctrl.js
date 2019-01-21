@@ -8,10 +8,12 @@ angular.module('app.controllers').controller('help_mainCtrl',
         'ISSUE_CALCULATOR',
         'ISSUE_WEATHER',
         'ISSUE_LOGBOOK',
-        'ISSUE_OTHER'
+        'ISSUE_OTHER',
     ];
     $scope.desc = {};
     $scope.selected = {};
+
+    $scope.openfn = __secrets.urls.openfn;
 
     $scope.$on('$ionicView.enter', function() {
     	//Do some things when view is entered
@@ -29,7 +31,7 @@ angular.module('app.controllers').controller('help_mainCtrl',
 
             $http({
                 method: 'POST',
-                url: 'https://www.openfn.org/inbox/3afab0f1-3937-4ca8-95a3-5491f6f32a4e',
+                url: $scope.openfn,
                 data: {
                     'issue_filter': 'fisher_app',
                     'type': $scope.selected.text === undefined ? '' : $scope.selected.text.trim(),
