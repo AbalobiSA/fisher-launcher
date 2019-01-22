@@ -1,5 +1,5 @@
 angular.module('app.controllers').controller('help_mainCtrl',
-    function($scope, $http, $cordovaAppVersion, $location, $state, $translate) {
+    function($scope, $http, $cordovaAppVersion, $ionicPopup, $ionicLoading, $location, $state, $translate) {
 
     $scope.issues = [
         'ISSUE_LOGGIN_CATCH',
@@ -33,6 +33,10 @@ angular.module('app.controllers').controller('help_mainCtrl',
         }  else {
             // console.log($scope.desc.text.trim());
             // console.log($scope.selected.text.trim());
+            $ionicLoading.show({
+                template: 'Logging issue. Please wait 15s...'
+                + "<br /><ion-spinner></ion-spinner>"
+            });
 
             $http({
                 method: 'POST',
@@ -44,10 +48,20 @@ angular.module('app.controllers').controller('help_mainCtrl',
                     'desc': $scope.desc.text === undefined ? '' : $scope.desc.text.trim()
                 }
             }).then(function (resp) {
-                alert('Thank you! Your issue has been logged.');
+                $ionicLoading.hide();
+                var popupParams = {
+                    title: "Success",
+                    template: "Thank you! Your issue has been logged."
+                };
+                $ionicPopup.alert(popupParams);
                 console.log('Your issue has been sent.');
             }, function (err) {
-                alert('Your issue could not be sent!');
+                $ionicLoading.hide();
+                var popupParams = {
+                    title: "Error",
+                    template: "Your issue could not be sent!"
+                };
+                $ionicPopup.alert(popupParams);
                 console.log('Your issue has failed to send');
             });
         }

@@ -60,7 +60,7 @@ angular.module('app.controllers').controller('settingsCtrl', function ($scope, $
                     "navigation":"swipe",
                     "password": validatePassword,
                     "protocol":"odk_default",
-                    "server_url": __secrets.urls.API_URL,
+                    "server_url": __secrets.urls.abalobi_api,
                     "username": validateUsername
                 },
                 "admin": {
